@@ -155,7 +155,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-WT-zln" customClass="RatingControl" customModule="MyPlace3" customModuleProvider="target">
-                                                    <rect key="frame" x="81" y="48" width="252" height="44"/>
+                                                    <rect key="frame" x="41" y="40" width="332" height="60"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -189,6 +189,7 @@
                         <outlet property="placeLocation" destination="Fz7-gQ-BXw" id="ctE-kW-PeK"/>
                         <outlet property="placeName" destination="HKC-8S-YmS" id="chO-Xn-JkI"/>
                         <outlet property="placeType" destination="C0x-zQ-zxe" id="MY0-VA-r0O"/>
+                        <outlet property="ratingControl" destination="RwM-WT-zln" id="YcX-wj-MCB"/>
                         <outlet property="saveButton" destination="bru-oj-LIe" id="lsc-m4-zjc"/>
                     </connections>
                 </tableViewController>
