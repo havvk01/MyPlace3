@@ -12,6 +12,7 @@ class MapViewController: UIViewController {
     
     var place = Place()
     let annotationIdentify = "annotationIdentify"
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -19,6 +20,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 //        mapView.delegate.self
         setupPlacemark()
+        checkLocationServices()
         // Do any additional setup after loading the view.
     }
     
@@ -53,7 +55,42 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAutorization()
+        } else {
+            
+        }
+    }
 
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    private func checkLocationAutorization() {
+        
+        let manager = CLLocationManager()
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            break
+        case .denied:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .restricted:
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            print("New case")
+        }
+        
+    }
+    
 }
 
 
@@ -79,3 +116,9 @@ class MapViewController: UIViewController {
 //        return annotationView
 //    }
 //}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAutorization()
+    }
+}
