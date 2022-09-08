@@ -45,6 +45,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="sd1-eB-Qej" secondAttribute="trailing" id="Fek-xp-diQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ih9-zV-Ri0" secondAttribute="bottom" id="GzJ-1o-NEc"/>
+                                                <constraint firstItem="sd1-eB-Qej" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pLi-f4-Lq5" secondAttribute="leading" constant="20" symbolic="YES" id="NzF-Lw-WaF"/>
                                                 <constraint firstItem="Ih9-zV-Ri0" firstAttribute="leading" secondItem="pLi-f4-Lq5" secondAttribute="leading" id="SPQ-gg-Dig"/>
                                                 <constraint firstAttribute="bottom" secondItem="sd1-eB-Qej" secondAttribute="bottom" id="gK9-fe-XkT"/>
                                                 <constraint firstItem="Ih9-zV-Ri0" firstAttribute="top" secondItem="pLi-f4-Lq5" secondAttribute="top" id="uya-P2-MQM"/>
@@ -219,32 +220,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SLz-DC-1AM">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SLz-DC-1AM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p04-4b-cfA">
-                                <rect key="frame" x="374" y="64" width="20" height="30"/>
+                                <rect key="frame" x="354" y="54" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Wxx-LI-8Nq"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="kEb-sa-ShV"/>
-                                    <constraint firstAttribute="height" constant="30" id="s6c-8m-VpB"/>
+                                    <constraint firstAttribute="height" constant="50" id="3H8-VZ-K9r"/>
+                                    <constraint firstAttribute="width" constant="50" id="NG0-6Y-oAu"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="cross" catalog="system" title=" "/>
+                                <buttonConfiguration key="configuration" style="plain" image="eject" catalog="system" title=" "/>
                                 <connections>
                                     <action selector="closeVC" destination="g6v-wk-fsj" eventType="touchUpInside" id="TQ4-fk-5Er"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3R-PC-RHa">
+                                <rect key="frame" x="344" y="772" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="5ZD-oG-k6T"/>
+                                    <constraint firstAttribute="height" constant="50" id="BaB-CJ-lhl"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="location" catalog="system"/>
+                                <connections>
+                                    <action selector="centerViewInUserLocation" destination="g6v-wk-fsj" eventType="touchUpInside" id="kjp-Lq-0Md"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Log-mh-VkY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SLz-DC-1AM" firstAttribute="trailing" secondItem="Log-mh-VkY" secondAttribute="trailing" id="6VF-cd-hxs"/>
-                            <constraint firstItem="SLz-DC-1AM" firstAttribute="leading" secondItem="Log-mh-VkY" secondAttribute="leading" id="7HV-N3-faJ"/>
-                            <constraint firstAttribute="bottom" secondItem="SLz-DC-1AM" secondAttribute="bottom" id="ACf-oE-Ydu"/>
-                            <constraint firstItem="SLz-DC-1AM" firstAttribute="top" secondItem="FRE-nE-rK7" secondAttribute="top" id="T2D-5N-glu"/>
-                            <constraint firstItem="p04-4b-cfA" firstAttribute="top" secondItem="FRE-nE-rK7" secondAttribute="topMargin" constant="20" id="UbZ-9r-w16"/>
-                            <constraint firstItem="Log-mh-VkY" firstAttribute="trailing" secondItem="p04-4b-cfA" secondAttribute="trailing" constant="20" id="xeE-jZ-gOW"/>
+                            <constraint firstItem="Log-mh-VkY" firstAttribute="trailing" secondItem="p04-4b-cfA" secondAttribute="trailing" constant="10" id="C4w-5J-ckQ"/>
+                            <constraint firstItem="p04-4b-cfA" firstAttribute="top" secondItem="Log-mh-VkY" secondAttribute="top" constant="10" id="qWo-8o-okC"/>
+                            <constraint firstItem="Log-mh-VkY" firstAttribute="trailing" secondItem="K3R-PC-RHa" secondAttribute="trailing" constant="20" id="vW3-7k-rgk"/>
+                            <constraint firstItem="Log-mh-VkY" firstAttribute="bottom" secondItem="K3R-PC-RHa" secondAttribute="bottom" constant="20" id="zBh-hQ-5xC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -414,18 +425,14 @@
             <point key="canvasLocation" x="1476.8115942028987" y="105.80357142857143"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="RwM-WT-zln">
-            <size key="intrinsicContentSize" width="252" height="44"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="Mft-OE-8da"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Custom-Icon-Design-Mono-General-3-Camera" width="128" height="128"/>
         <image name="arrow.down" catalog="system" width="120" height="128"/>
-        <image name="cross" catalog="system" width="128" height="116"/>
+        <image name="eject" catalog="system" width="128" height="112"/>
+        <image name="location" catalog="system" width="128" height="118"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

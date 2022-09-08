@@ -7,13 +7,14 @@
 
 import UIKit
 import MapKit
+import SwiftUI
 
 class MapViewController: UIViewController {
     
     var place = Place()
     let annotationIdentify = "annotationIdentify"
     let locationManager = CLLocationManager()
-    
+    let regionInMeters:Double = 10000
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -24,6 +25,13 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func centerViewInUserLocation() {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
     
     @IBAction func closeVC() {
         dismiss(animated: true)
@@ -61,6 +69,13 @@ class MapViewController: UIViewController {
             checkLocationAutorization()
         } else {
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                
+                let alert = UIAlertController(title: "Location Services are Disabled", message: "to Enable it go: Settings", preferredStyle: .alert)
+                self.present(alert, animated: true)
+                }
+            
+                
         }
     }
 
