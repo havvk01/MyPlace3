@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B11817A28CA1C7C00083E4C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11817928CA1C7C00083E4C /* MapViewController.swift */; };
 		0B21F1DC28C4AF0600587FF5 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21F1DB28C4AF0600587FF5 /* NewPlaceViewController.swift */; };
 		0B21F1DF28C4DDA300587FF5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0B21F1DE28C4DDA300587FF5 /* Realm */; };
 		0B21F1E128C4DDA300587FF5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B21F1E028C4DDA300587FF5 /* RealmSwift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B11817928CA1C7C00083E4C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0B21F1DB28C4AF0600587FF5 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		0B21F1E228C635BF00587FF5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0B30263428C3C9D300E684B5 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				0B94D2E328C7FCE000D937F9 /* RatingControl.swift */,
 				0B21F1DB28C4AF0600587FF5 /* NewPlaceViewController.swift */,
 				0BA9AF6D28BF9FCE00646EE9 /* SceneDelegate.swift */,
+				0B11817928CA1C7C00083E4C /* MapViewController.swift */,
 				0BA9AF7128BF9FCE00646EE9 /* Main.storyboard */,
 				0BA9AF7428BF9FCF00646EE9 /* Assets.xcassets */,
 				0BA9AF7628BF9FCF00646EE9 /* LaunchScreen.storyboard */,
@@ -168,6 +171,7 @@
 				0B21F1DC28C4AF0600587FF5 /* NewPlaceViewController.swift in Sources */,
 				0BA9AF6C28BF9FCE00646EE9 /* AppDelegate.swift in Sources */,
 				0B21F1E328C635BF00587FF5 /* StorageManager.swift in Sources */,
+				0B11817A28CA1C7C00083E4C /* MapViewController.swift in Sources */,
 				0B94D2E428C7FCE000D937F9 /* RatingControl.swift in Sources */,
 				0B30263528C3C9D300E684B5 /* PlaceModel.swift in Sources */,
 				0BA9AF8228C3C5DF00646EE9 /* CustomTableViewCell.swift in Sources */,
