@@ -77,12 +77,13 @@ class NewPlaceViewController: UITableViewController, UINavigationControllerDeleg
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
-        }
+        if segue.identifier != "showMap" { return }
         
         let mapVC = segue.destination as! MapViewController
-        mapVC.place = currentPlace
+        mapVC.place.name = placeName.text!
+        mapVC.place.location = placeLocation.text
+        mapVC.place.type = placeType.text
+        mapVC.place.imageData = placeImage.image?.pngData()
     }
     
     
@@ -90,13 +91,13 @@ class NewPlaceViewController: UITableViewController, UINavigationControllerDeleg
         
 //        let newPlace = Place()
         
-        var image: UIImage?
+        let image = imageIsChanged ? placeImage.image : UIImage(named: "66550")
         
-        if imageIsChanged {
-            image = placeImage.image
-        } else {
-            image = UIImage(named: "66550")
-        }
+//        if imageIsChanged {
+//            image = placeImage.image
+//        } else {
+//            image = UIImage(named: "66550")
+//        }
         
         let imageData = image?.pngData()
         

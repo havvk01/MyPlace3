@@ -88,16 +88,31 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let place = places[indexPath.row]
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") {(_, _) in
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, complete in
             StorageManager.deleteObject(place)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            complete(true)
         }
-
-        return [deleteAction]
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+               configuration.performsFirstActionWithFullSwipe = true
+               return configuration
+    
     }
+    
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//
+//        let place = places[indexPath.row]
+//        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") {(_, _) in
+//            StorageManager.deleteObject(place)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//
+//        return [deleteAction]
+//    }
     
 //    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UIContextualAction]? {
 //
