@@ -8,7 +8,7 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController, UINavigationControllerDelegate {
-
+    
     var currentPlace: Place!
     var imageIsChanged = false
     
@@ -27,9 +27,9 @@ class NewPlaceViewController: UITableViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        DispatchQueue.main.async {
-//            self.newPlace.savePlaces()
-//        }
+        //        DispatchQueue.main.async {
+        //            self.newPlace.savePlaces()
+        //        }
         
         tableView.tableFooterView = UIView()
         //frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -38,9 +38,9 @@ class NewPlaceViewController: UITableViewController, UINavigationControllerDeleg
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
         
-
+        
     }
-
+    
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -77,27 +77,34 @@ class NewPlaceViewController: UITableViewController, UINavigationControllerDeleg
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" { return }
         
-        let mapVC = segue.destination as! MapViewController
-        mapVC.place.name = placeName.text!
-        mapVC.place.location = placeLocation.text
-        mapVC.place.type = placeType.text
-        mapVC.place.imageData = placeImage.image?.pngData()
+        guard let identifier = segue.identifier,
+              let mapVC = segue.destination as? MapViewController
+        else { return }
+        
+        mapVC.incomeSegueIdentifier = identifier
+        mapVC.mapViewControllerDelegate = self
+        
+        if identifier == "showPlace" {
+            mapVC.place.name = placeName.text!
+            mapVC.place.location = placeLocation.text
+            mapVC.place.type = placeType.text
+            mapVC.place.imageData = placeImage.image?.pngData()
+        }
     }
     
     
     func savePlace() {
         
-//        let newPlace = Place()
+        //        let newPlace = Place()
         
         let image = imageIsChanged ? placeImage.image : UIImage(named: "66550")
         
-//        if imageIsChanged {
-//            image = placeImage.image
-//        } else {
-//            image = UIImage(named: "66550")
-//        }
+        //        if imageIsChanged {
+        //            image = placeImage.image
+        //        } else {
+        //            image = UIImage(named: "66550")
+        //        }
         
         let imageData = image?.pngData()
         
@@ -155,7 +162,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
+    
     @objc private func textFieldChanged() {
         if placeName.text?.isEmpty == false {
             saveButton.isEnabled = true
@@ -163,7 +170,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
             saveButton.isEnabled = false
         }
     }
-
+    
     
 }
 
@@ -190,4 +197,13 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate {
         imageIsChanged = true
         dismiss(animated: true)
     }
+}
+
+extension NewPlaceViewController: MapViewControllerDelegate {
+    
+    func getAddress(_ address: String?) {
+        placeLocation.text = address
+    }
+    
+    
 }

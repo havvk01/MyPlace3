@@ -27,5 +27,5 @@ class Place: Object {
         self.rating = rating
         
     }
-
+    
 }

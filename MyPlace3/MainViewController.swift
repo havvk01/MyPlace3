@@ -9,9 +9,9 @@ import UIKit
 import RealmSwift
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     private let searchController = UISearchController(searchResultsController: nil)
-//    var currentPlace:Place?
+    //    var currentPlace:Place?
     private var places:Results<Place>!
     private var filtredPlaces: Results<Place>!
     private var ascendingSorting = true
@@ -39,13 +39,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
-
+        
         navigationItem.hidesSearchBarWhenScrolling = true
         definesPresentationContext = true
         
-
+        
     }
-
+    
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +57,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return places.isEmpty ? 0 :  places.count
     }
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
@@ -68,20 +68,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             place = places[indexPath.row]
         }
-
+        
         cell.nameLabel?.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
-
+        
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
         
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace?.clipsToBounds = true
-
+        
         return cell
     }
-
-
+    
+    
     // MARK: Table view delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,36 +98,36 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             complete(true)
         }
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-               configuration.performsFirstActionWithFullSwipe = true
-               return configuration
-    
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
+        
     }
     
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//
-//        let place = places[indexPath.row]
-//        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") {(_, _) in
-//            StorageManager.deleteObject(place)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//
-//        return [deleteAction]
-//    }
+    //    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    //
+    //        let place = places[indexPath.row]
+    //        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") {(_, _) in
+    //            StorageManager.deleteObject(place)
+    //            tableView.deleteRows(at: [indexPath], with: .automatic)
+    //        }
+    //
+    //        return [deleteAction]
+    //    }
     
-//    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UIContextualAction]? {
-//
-//        let place = places[indexPath.row]
-//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { _, _, _ in
-//            StorageManager.deleteObject(place)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        })
-//
-//        return [deleteAction]
-//    }
-//
+    //    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UIContextualAction]? {
+    //
+    //        let place = places[indexPath.row]
+    //        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { _, _, _ in
+    //            StorageManager.deleteObject(place)
+    //            tableView.deleteRows(at: [indexPath], with: .automatic)
+    //        })
+    //
+    //        return [deleteAction]
+    //    }
+    //
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }

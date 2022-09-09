@@ -31,7 +31,7 @@ class RatingControl: UIStackView {
     }
     
     
-
+    
     //MARK: Initilialization
     
     override init(frame: CGRect) {
@@ -105,5 +105,5 @@ class RatingControl: UIStackView {
         }
     }
     
-
+    
 }
